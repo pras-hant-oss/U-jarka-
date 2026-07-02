@@ -1,0 +1,1595 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>U Jarka - Polish Restaurant Glasgow</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #1a1a1a;
+            --accent: #c0392b;
+            --gold: #d4a574;
+            --cream: #f5f0e8;
+            --text: #333;
+            --light: #fff;
+        }
+
+        body {
+            font-family: 'Open Sans', sans-serif;
+            color: var(--text);
+            background: var(--cream);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, h4 {
+            font-family: 'Playfair Display', serif;
+            font-weight: 600;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(26, 26, 26, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            padding: 15px 0;
+            transition: all 0.3s ease;
+        }
+
+        nav .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 30px;
+        }
+
+        .logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            color: var(--gold);
+            text-decoration: none;
+            font-weight: 700;
+            letter-spacing: 2px;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 40px;
+        }
+
+        .nav-links a {
+            color: var(--light);
+            text-decoration: none;
+            font-size: 0.95rem;
+            font-weight: 400;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            transition: color 0.3s;
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--gold);
+            transition: width 0.3s;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .nav-links a:hover {
+            color: var(--gold);
+        }
+
+        .mobile-menu {
+            display: none;
+            color: var(--light);
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=1920&h=1080&fit=crop') center/cover;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            position: relative;
+        }
+
+        .hero-content {
+            color: var(--light);
+            max-width: 800px;
+            padding: 0 20px;
+            animation: fadeInUp 1s ease;
+        }
+
+        .hero-content h1 {
+            font-size: 4.5rem;
+            margin-bottom: 20px;
+            letter-spacing: 3px;
+            font-weight: 700;
+        }
+
+        .hero-content .subtitle {
+            font-size: 1.3rem;
+            font-weight: 300;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            margin-bottom: 30px;
+            color: var(--gold);
+        }
+
+        .hero-content .tagline {
+            font-size: 1.1rem;
+            font-weight: 300;
+            margin-bottom: 40px;
+            opacity: 0.9;
+        }
+
+        .hero-rating {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+
+        .stars {
+            color: #ffc107;
+            font-size: 1.2rem;
+        }
+
+        .rating-text {
+            font-size: 1rem;
+            opacity: 0.9;
+        }
+
+        .hero-info {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            flex-wrap: wrap;
+            margin-top: 30px;
+        }
+
+        .hero-info-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 0.95rem;
+        }
+
+        .hero-info-item i {
+            color: var(--gold);
+        }
+
+        .scroll-indicator {
+            position: absolute;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            animation: bounce 2s infinite;
+        }
+
+        .scroll-indicator i {
+            color: var(--light);
+            font-size: 2rem;
+            opacity: 0.7;
+        }
+
+        /* Signature Dishes Section */
+        .signature-dishes {
+            padding: 100px 0;
+            background: var(--light);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 30px;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .section-header h2 {
+            font-size: 2.8rem;
+            color: var(--primary);
+            margin-bottom: 15px;
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-header h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 3px;
+            background: var(--accent);
+        }
+
+        .section-header p {
+            color: #666;
+            font-size: 1.1rem;
+            margin-top: 25px;
+        }
+
+        .dishes-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 40px;
+            margin-bottom: 50px;
+        }
+
+        .dish-card {
+            background: var(--light);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .dish-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+        }
+
+        .dish-image {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            display: block;
+        }
+
+        .dish-content {
+            padding: 25px;
+        }
+
+        .dish-name {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.4rem;
+            color: var(--primary);
+            margin-bottom: 8px;
+        }
+
+        .dish-desc {
+            color: #666;
+            font-size: 0.95rem;
+            margin-bottom: 15px;
+        }
+
+        .dish-price {
+            font-size: 1.3rem;
+            color: var(--accent);
+            font-weight: 600;
+        }
+
+        .dish-tags {
+            display: flex;
+            gap: 8px;
+            margin-top: 12px;
+        }
+
+        .tag {
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+
+        .tag.vegetarian {
+            background: #e8f5e9;
+            color: #2e7d32;
+        }
+
+        .tag.gluten-free {
+            background: #fff3e0;
+            color: #e65100;
+        }
+
+        .tag.popular {
+            background: #fce4ec;
+            color: #c62828;
+        }
+
+        .btn-primary {
+            display: inline-block;
+            padding: 15px 40px;
+            background: var(--accent);
+            color: var(--light);
+            text-decoration: none;
+            font-size: 1rem;
+            font-weight: 600;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            border-radius: 50px;
+            transition: all 0.3s ease;
+            border: 2px solid var(--accent);
+            cursor: pointer;
+        }
+
+        .btn-primary:hover {
+            background: transparent;
+            color: var(--accent);
+        }
+
+        .text-center {
+            text-align: center;
+        }
+
+        /* Full Menu Section */
+        .full-menu {
+            padding: 100px 0;
+            background: var(--cream);
+            display: none;
+        }
+
+        .full-menu.active {
+            display: block;
+        }
+
+        .menu-nav {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 50px;
+            flex-wrap: wrap;
+        }
+
+        .menu-nav-btn {
+            padding: 12px 25px;
+            background: transparent;
+            border: 2px solid var(--primary);
+            color: var(--primary);
+            font-size: 0.9rem;
+            font-weight: 600;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            cursor: pointer;
+            border-radius: 30px;
+            transition: all 0.3s;
+        }
+
+        .menu-nav-btn:hover, .menu-nav-btn.active {
+            background: var(--primary);
+            color: var(--light);
+        }
+
+        .menu-category {
+            display: none;
+            animation: fadeIn 0.5s ease;
+        }
+
+        .menu-category.active {
+            display: block;
+        }
+
+        .menu-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+        }
+
+        .menu-item {
+            background: var(--light);
+            padding: 25px 30px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            transition: transform 0.3s;
+            border-left: 4px solid var(--accent);
+        }
+
+        .menu-item:hover {
+            transform: translateX(5px);
+        }
+
+        .menu-item-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            margin-bottom: 10px;
+        }
+
+        .menu-item-name {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.2rem;
+            color: var(--primary);
+        }
+
+        .menu-item-price {
+            font-size: 1.2rem;
+            color: var(--accent);
+            font-weight: 700;
+        }
+
+        .menu-item-desc {
+            color: #666;
+            font-size: 0.9rem;
+            margin-bottom: 10px;
+        }
+
+        .menu-item-polish {
+            font-style: italic;
+            color: #888;
+            font-size: 0.85rem;
+        }
+
+        .menu-item-tags {
+            display: flex;
+            gap: 8px;
+            margin-top: 10px;
+        }
+
+        .menu-tag {
+            padding: 3px 10px;
+            border-radius: 15px;
+            font-size: 0.7rem;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+
+        .menu-tag.v {
+            background: #e8f5e9;
+            color: #2e7d32;
+        }
+
+        .menu-tag.vv {
+            background: #c8e6c9;
+            color: #1b5e20;
+        }
+
+        .menu-tag.gf {
+            background: #fff3e0;
+            color: #e65100;
+        }
+
+        /* About Section */
+        .about {
+            padding: 100px 0;
+            background: var(--light);
+        }
+
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+
+        .about-image {
+            width: 100%;
+            border-radius: 12px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        }
+
+        .about-content h2 {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 20px;
+        }
+
+        .about-content p {
+            color: #555;
+            font-size: 1.05rem;
+            margin-bottom: 20px;
+            line-height: 1.8;
+        }
+
+        .about-features {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin-top: 30px;
+        }
+
+        .feature-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .feature-item i {
+            color: var(--accent);
+            font-size: 1.2rem;
+        }
+
+        /* Gallery Section */
+        .gallery {
+            padding: 100px 0;
+            background: var(--cream);
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        .gallery-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: 10px;
+            height: 280px;
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.1);
+        }
+
+        .gallery-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(transparent, rgba(0,0,0,0.8));
+            padding: 30px 20px 20px;
+            color: var(--light);
+            transform: translateY(100%);
+            transition: transform 0.3s;
+        }
+
+        .gallery-item:hover .gallery-overlay {
+            transform: translateY(0);
+        }
+
+        .gallery-overlay h4 {
+            font-size: 1.2rem;
+        }
+
+        /* Reviews Section */
+        .reviews {
+            padding: 100px 0;
+            background: var(--light);
+        }
+
+        .reviews-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+        }
+
+        .review-card {
+            background: var(--cream);
+            padding: 35px;
+            border-radius: 12px;
+            position: relative;
+        }
+
+        .review-card::before {
+            content: '"';
+            font-family: 'Playfair Display', serif;
+            font-size: 5rem;
+            color: var(--gold);
+            position: absolute;
+            top: -10px;
+            left: 20px;
+            opacity: 0.3;
+        }
+
+        .review-header {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .review-avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: var(--accent);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--light);
+            font-weight: 700;
+            font-size: 1.2rem;
+        }
+
+        .review-meta h4 {
+            font-size: 1.1rem;
+            color: var(--primary);
+        }
+
+        .review-meta .review-stars {
+            color: #ffc107;
+            font-size: 0.9rem;
+        }
+
+        .review-text {
+            color: #555;
+            font-style: italic;
+            line-height: 1.8;
+        }
+
+        /* Contact Section */
+        .contact {
+            padding: 100px 0;
+            background: var(--primary);
+            color: var(--light);
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+
+        .contact-info h2 {
+            font-size: 2.5rem;
+            margin-bottom: 30px;
+            color: var(--gold);
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 20px;
+            margin-bottom: 25px;
+        }
+
+        .contact-item i {
+            color: var(--gold);
+            font-size: 1.3rem;
+            margin-top: 5px;
+        }
+
+        .contact-item h4 {
+            font-size: 1.1rem;
+            margin-bottom: 5px;
+            color: var(--light);
+        }
+
+        .contact-item p, .contact-item a {
+            color: #aaa;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .contact-item a:hover {
+            color: var(--gold);
+        }
+
+        .map-container {
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+            height: 400px;
+        }
+
+        .map-container iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        /* Footer */
+        footer {
+            background: #0f0f0f;
+            color: #aaa;
+            padding: 40px 0;
+            text-align: center;
+        }
+
+        footer p {
+            font-size: 0.9rem;
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateX(-50%) translateY(0); }
+            40% { transform: translateX(-50%) translateY(-15px); }
+            60% { transform: translateX(-50%) translateY(-10px); }
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+            .mobile-menu {
+                display: block;
+            }
+            .hero-content h1 {
+                font-size: 2.5rem;
+            }
+            .about-grid, .contact-grid {
+                grid-template-columns: 1fr;
+            }
+            .menu-grid {
+                grid-template-columns: 1fr;
+            }
+            .about-features {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+<base target="_blank">
+</head>
+<body>
+
+    <!-- Navigation -->
+    <nav id="navbar">
+        <div class="container">
+            <a href="#" class="logo">U Jarka</a>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#signature">Signature</a></li>
+                <li><a href="#menu">Menu</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#gallery">Gallery</a></li>
+                <li><a href="#reviews">Reviews</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+            <div class="mobile-menu">
+                <i class="fas fa-bars"></i>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <div class="subtitle">Authentic Polish Cuisine</div>
+            <h1>U Jarka</h1>
+            <p class="tagline">Experience the rich flavors of traditional Polish cooking in the heart of Glasgow</p>
+            <div class="hero-rating">
+                <span class="stars">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star-half-alt"></i>
+                </span>
+                <span class="rating-text">4.6 (269 Reviews) · £10-20 per person</span>
+            </div>
+            <div class="hero-info">
+                <div class="hero-info-item">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <span>5 Parkgrove Terrace, Glasgow G3 7SD</span>
+                </div>
+                <div class="hero-info-item">
+                    <i class="fas fa-utensils"></i>
+                    <span>Dine-in</span>
+                </div>
+                <div class="hero-info-item">
+                    <i class="fas fa-clock"></i>
+                    <span>Opens 6 PM</span>
+                </div>
+            </div>
+        </div>
+        <div class="scroll-indicator">
+            <i class="fas fa-chevron-down"></i>
+        </div>
+    </section>
+
+    <!-- Signature Dishes -->
+    <section class="signature-dishes" id="signature">
+        <div class="container">
+            <div class="section-header">
+                <h2>Signature Dishes</h2>
+                <p>Our most beloved Polish specialties, crafted with tradition and passion</p>
+            </div>
+            <div class="dishes-grid">
+                <div class="dish-card">
+                    <img src="https://images.unsplash.com/photo-1626804475297-411d863b5285?w=600&h=400&fit=crop" alt="Panierowany Kotlet Schabowy" class="dish-image">
+                    <div class="dish-content">
+                        <h3 class="dish-name">Panierowany Kotlet Schabowy</h3>
+                        <p class="dish-desc">Traditional breaded pork chop served with potatoes and fresh garnish</p>
+                        <div class="dish-price">£15.00</div>
+                        <div class="dish-tags">
+                            <span class="tag popular">Popular</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="dish-card">
+                    <img src="https://images.unsplash.com/photo-1600891964092-4316c288032e?w=600&h=400&fit=crop" alt="Pierogi" class="dish-image">
+                    <div class="dish-content">
+                        <h3 class="dish-name">Pierogi (5 pieces)</h3>
+                        <p class="dish-desc">Handmade dumplings stuffed with potatoes, fried onions & cottage cheese</p>
+                        <div class="dish-price">£7.00</div>
+                        <div class="dish-tags">
+                            <span class="tag vegetarian">Vegetarian</span>
+                            <span class="tag popular">Popular</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="dish-card">
+                    <img src="https://images.unsplash.com/photo-1547592166-23ac45744acd?w=600&h=400&fit=crop" alt="Barszcz Czysty" class="dish-image">
+                    <div class="dish-content">
+                        <h3 class="dish-name">Barszcz Czysty</h3>
+                        <p class="dish-desc">Clear beetroot soup - a classic Polish starter with deep, earthy flavors</p>
+                        <div class="dish-price">£3.00</div>
+                        <div class="dish-tags">
+                            <span class="tag vegetarian">Vegetarian</span>
+                            <span class="tag gluten-free">Gluten Free</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="dish-card">
+                    <img src="https://images.unsplash.com/photo-1534939561126-855b8675edd7?w=600&h=400&fit=crop" alt="Gulasz Wotowy" class="dish-image">
+                    <div class="dish-content">
+                        <h3 class="dish-name">Gulasz Wotowy</h3>
+                        <p class="dish-desc">Rich and hearty beef stew, slow-cooked to perfection with traditional spices</p>
+                        <div class="dish-price">£17.00</div>
+                        <div class="dish-tags">
+                            <span class="tag popular">Popular</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="text-center">
+                <button class="btn-primary" onclick="showFullMenu()">Full Menu</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Full Menu -->
+    <section class="full-menu" id="menu">
+        <div class="container">
+            <div class="section-header">
+                <h2>Our Menu</h2>
+                <p>Authentic Polish flavors, crafted with love and tradition</p>
+            </div>
+
+            <div class="menu-nav">
+                <button class="menu-nav-btn active" onclick="showCategory('starters')">Starters</button>
+                <button class="menu-nav-btn" onclick="showCategory('soups')">Soups</button>
+                <button class="menu-nav-btn" onclick="showCategory('pierogi')">Pierogi</button>
+                <button class="menu-nav-btn" onclick="showCategory('mains')">Main Meals</button>
+                <button class="menu-nav-btn" onclick="showCategory('sides')">Side Dishes</button>
+                <button class="menu-nav-btn" onclick="showCategory('kids')">For Kids</button>
+                <button class="menu-nav-btn" onclick="showCategory('desserts')">Desserts</button>
+                <button class="menu-nav-btn" onclick="showCategory('drinks')">Drinks</button>
+            </div>
+
+            <!-- Starters -->
+            <div class="menu-category active" id="starters">
+                <div class="menu-grid">
+                    <div class="menu-item">
+                        <div class="menu-item-header">
+                            <span class="menu-item-name">Homemade Fried Sausage</span>
+                            <span class="menu-item-price">£8.00</span>
+                        </div>
+                        <p class="menu-item-desc">Served with bread and mustard</p>
+                        <p class="menu-item-polish">Kiełbasa szefa kuchni smażona, z chlebem i musztardą</p>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-header">
+                            <span class="menu-item-name">Potato Pancakes with Sour Cream</span>
+                            <span class="menu-item-price">£10.00</span>
+                        </div>
+                        <p class="menu-item-desc">5 pieces of crispy potato pancakes</p>
+                        <p class="menu-item-polish">Placki ziemniaczane ze śmietaną (5 sztuki)</p>
+                        <div class="menu-item-tags">
+                            <span class="menu-tag v">Vegetarian</span>
+                        </div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-header">
+                            <span class="menu-item-name">Potato Pancakes with Sour Cream</span>
+                            <span class="menu-item-price">£7.00</span>
+                        </div>
+                        <p class="menu-item-desc">3 pieces of crispy potato pancakes</p>
+                        <p class="menu-item-polish">Placki ziemniaczane ze śmietaną (3 sztuki)</p>
+                        <div class="menu-item-tags">
+                            <span class="menu-tag v">Vegetarian</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Soups -->
+            <div class="menu-category" id="soups">
+                <div class="menu-grid">
+                    <div class="menu-item">
+                        <div class="menu-item-header">
+                            <span class="menu-item-name">Clear Beetroot Soup</span>
+                            <span class="menu-item-price">£3.00</span>
+                        </div>
+                        <p class="menu-item-desc">Traditional Polish clear beetroot soup</p>
+                        <p class="menu-item-polish">Barszcz czysty</p>
+                        <div class="menu-item-tags">
+                            <span class="menu-tag vv">Vegan</span>
+                            <span class="menu-tag gf">Gluten Free</span>
+                        </div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-header">
+                            <span class="menu-item-name">Chicken Soup with Ravioli</span>
+                            <span class="menu-item-price">£6.00</span>
+                        </div>
+                        <p class="menu-item-desc">Stuffed with duck filling</p>
+                        <p class="menu-item-polish">Rosół z kołdunami z kaczki</p>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-header">
+                            <span class="menu-item-name">Sour Rye Soup</span>
+                            <span class="menu-item-price">£5.00</span>
+                        </div>
+                        <p class="menu-item-desc">With egg and sausage - a Polish classic</p>
+                        <p class="menu-item-polish">Barszcz biały z jajkiem i kiełbasą</p>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-header">
+                            <span class="menu-item-name">Beef Goulash Soup</span>
+                            <span class="menu-item-price">£5.00</span>
+                        </div>
+                        <p class="menu-item-desc">Hearty and warming beef soup</p>
+                        <p class="menu-item-polish">Wołowa zupa gulaszowa</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Pierogi -->
+            <div class="menu-category" id="pierogi">
+                <div class="menu-grid">
+                    <div class="menu-item">
+                        <div class="menu-item-header">
+                            <span class="menu-item-name">Ruskie Pierogi</span>
+                            <span class="menu-item-price">£7.00</span>
+                        </div>
+                        <p class="menu-item-desc">Dumplings stuffed with potatoes, fried onions and cottage cheese</p>
+                        <p class="menu-item-polish">Pierogi z ziemniakami, cebulką i twarogiem</p>
+                        <div class="menu-item-tags">
+                            <span class="menu-tag v">Vegetarian</span>
+                        </div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-header">
+                            <span class="menu-item-name">Pierogi with Meat</span>
+                            <span class="menu-item-price">£7.00</span>
+                        </div>
+                        <p class="menu-item-desc">Traditional meat-filled dumplings</p>
+                        <p class="menu-item-polish">Pierogi z mięsem</p>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-header">
+                            <span class="menu-item-name">Pierogi with Cabbage & Mushrooms</span>
+                            <span class="menu-item-price">£7.00</span>
+                        </div>
+                        <p class="menu-item-desc">Classic vegetarian filling</p>
+                        <p class="menu-item-polish">Pierogi z kapustą i grzybami</p>
+                        <div class="menu-item-tags">
+                            <span class="menu-tag v">Vegetarian</span>
+                        </div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-header">
+                            <span class="menu-item-name">Dumpling Mix (6 pieces)</span>
+                            <span class="menu-item-price">£8.50</span>
+                        </div>
+                        <p class="menu-item-desc">A delicious mix of our best pierogi</p>
+                        <p class="menu-item-polish">Mix pierogów</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Main Meals -->
+            <div class="menu-category" id="mains">
+                <div class="menu-grid">
+                    <div class="menu-item">
+                        <div class="menu-item-header">
+                            <span class="menu-item-name">Breaded Pork Chop</span>
+                            <span class="menu-item-price">£15.00</span>
+                        </div>
+                        <p class="menu-item-desc">Served with potatoes or fries and garnish</p>
+                        <p class="menu-item-polish">Panierowany kotlet schabowy</p>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-header">
+                            <span class="menu-item-name">Pork Medallion with Mushrooms</span>
+                            <span class="menu-item-price">£17.00</span>
+                        </div>
+                        <p class="menu-item-desc">Tender pork with creamy mushroom sauce</p>
+                        <p class="menu-item-polish">Medalion wieprzowy z pieczarkami</p>
+                        <div class="menu-item-tags">
+                            <span class="menu-tag gf">Gluten Free</span>
+                        </div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-header">
+                            <span class="menu-item-name">Lamb Shashlik</span>
+                            <span class="menu-item-price">£19.00</span>
+                        </div>
+                        <p class="menu-item-desc">6 pieces of marinated lamb</p>
+                        <p class="menu-item-polish">Szaszłyk barani</p>
+                        <div class="menu-item-tags">
+                            <span class="menu-tag gf">Gluten Free</span>
+                        </div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-header">
+                            <span class="menu-item-name">Beef Stew</span>
+                            <span class="menu-item-price">£17.00</span>
+                        </div>
+                        <p class="menu-item-desc">Rich, slow-cooked beef stew</p>
+                        <p class="menu-item-polish">Gulasz wołowy</p>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-header">
+                            <span class="menu-item-name">Veal Schnitzel</span>
+                            <span class="menu-item-price">£19.00</span>
+                        </div>
+                        <p class="menu-item-desc">Served with a slice of lemon</p>
+                        <p class="menu-item-polish">Sznycel cielęcy serwowany z plasterem cytryny</p>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-header">
+                            <span class="menu-item-name">Grilled Chicken Fillet with Herbs</span>
+                            <span class="menu-item-price">£17.00</span>
+                        </div>
+                        <p class="menu-item-desc">Tender chicken with aromatic herbs</p>
+                        <p class="menu-item-polish">Grillowana pierś z kurczaka z ziołami</p>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-header">
+                            <span class="menu-item-name">Duck Breast in Plum Sauce</span>
+                            <span class="menu-item-price">£17.00</span>
+                        </div>
+                        <p class="menu-item-desc">Succulent duck with sweet plum sauce</p>
+                        <p class="menu-item-polish">Pierś z kaczki w sosie śliwkowym</p>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-header">
+                            <span class="menu-item-name">Potato Pancakes with Beef Stew</span>
+                            <span class="menu-item-price">£17.00</span>
+                        </div>
+                        <p class="menu-item-desc">Classic combination of crispy pancakes and rich stew</p>
+                        <p class="menu-item-polish">Placek po węgiersku</p>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-header">
+                            <span class="menu-item-name">Potato Pancakes with Mushroom Sauce</span>
+                            <span class="menu-item-price">£15.00</span>
+                        </div>
+                        <p class="menu-item-desc">Vegetarian favorite with creamy mushroom sauce</p>
+                        <p class="menu-item-polish">Placki z sosem grzybowym</p>
+                        <div class="menu-item-tags">
+                            <span class="menu-tag v">Vegetarian</span>
+                        </div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-header">
+                            <span class="menu-item-name">Sauerkraut Stew</span>
+                            <span class="menu-item-price">£10.00</span>
+                        </div>
+                        <p class="menu-item-desc">Served with bread - Bigos, the Polish national dish</p>
+                        <p class="menu-item-polish">Bigos z mięsem</p>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-header">
+                            <span class="menu-item-name">Vegetarian Sauerkraut Stew</span>
+                            <span class="menu-item-price">£10.00</span>
+                        </div>
+                        <p class="menu-item-desc">Served with bread</p>
+                        <p class="menu-item-polish">Bigos wegetariański serwowany z chlebem</p>
+                        <div class="menu-item-tags">
+                            <span class="menu-tag vv">Vegan</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Side Dishes -->
+            <div class="menu-category" id="sides">
+                <div class="menu-grid">
+                    <div class="menu-item">
+                        <div class="menu-item-header">
+                            <span class="menu-item-name">Chips (Large Portion)</span>
+                            <span class="menu-item-price">£7.00</span>
+                        </div>
+                        <p class="menu-item-polish">Frytki duża porcja</p>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-header">
+                            <span class="menu-item-name">Chips (Small Portion)</span>
+                            <span class="menu-item-price">£4.00</span>
+                        </div>
+                        <p class="menu-item-polish">Frytki mała porcja</p>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-header">
+                            <span class="menu-item-name">Set of Salad</span>
+                            <span class="menu-item-price">£6.00</span>
+                        </div>
+                        <p class="menu-item-desc">Beetroot salad contains mustard</p>
+                        <p class="menu-item-polish">Zestaw surówek</p>
+                        <div class="menu-item-tags">
+                            <span class="menu-tag gf">Gluten Free</span>
+                        </div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-header">
+                            <span class="menu-item-name">Mushroom Sauce Portion (150ml)</span>
+                            <span class="menu-item-price">£5.00</span>
+                        </div>
+                        <p class="menu-item-polish">Sos grzybowy porcja</p>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-header">
+                            <span class="menu-item-name">Extra Sauce</span>
+                            <span class="menu-item-price">£1.50</span>
+                        </div>
+                        <p class="menu-item-desc">Ketchup, garlic mayonnaise, cream etc.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- For Kids -->
+            <div class="menu-category" id="kids">
+                <div class="menu-grid">
+                    <div class="menu-item">
+                        <div class="menu-item-header">
+                            <span class="menu-item-name">Chicken Nuggets with Chips</span>
+                            <span class="menu-item-price">£6.00</span>
+                        </div>
+                        <p class="menu-item-polish">Mały kotlet z kurczaka z frytkami</p>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-header">
+                            <span class="menu-item-name">Small Chicken Fillet, Chips & Salad</span>
+                            <span class="menu-item-price">£7.50</span>
+                        </div>
+                        <p class="menu-item-polish">Mały kotlet z kurczaka z frytkami i surówką</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Desserts -->
+            <div class="menu-category" id="desserts">
+                <div class="menu-grid">
+                    <div class="menu-item">
+                        <div class="menu-item-header">
+                            <span class="menu-item-name">Cake served with Ice Cream</span>
+                            <span class="menu-item-price">£6.50</span>
+                        </div>
+                        <p class="menu-item-polish">Ciasto z lodami</p>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-header">
+                            <span class="menu-item-name">Apple Pie</span>
+                            <span class="menu-item-price">£6.50</span>
+                        </div>
+                        <p class="menu-item-polish">Szarlotka</p>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-header">
+                            <span class="menu-item-name">Cheesecake</span>
+                            <span class="menu-item-price">£6.50</span>
+                        </div>
+                        <p class="menu-item-polish">Sernik</p>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-header">
+                            <span class="menu-item-name">Chocolate Cake</span>
+                            <span class="menu-item-price">£6.50</span>
+                        </div>
+                        <p class="menu-item-desc">May also contain nuts</p>
+                        <p class="menu-item-polish">Ciasto czekoladowe</p>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-header">
+                            <span class="menu-item-name">Ice Cream Dessert</span>
+                            <span class="menu-item-price">£6.50</span>
+                        </div>
+                        <p class="menu-item-polish">Deser lodowy</p>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-header">
+                            <span class="menu-item-name">Ice Cream (1 Scoop)</span>
+                            <span class="menu-item-price">£2.00</span>
+                        </div>
+                        <p class="menu-item-polish">Lody 1 gałka</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Drinks -->
+            <div class="menu-category" id="drinks">
+                <div class="menu-grid">
+                    <div class="menu-item">
+                        <div class="menu-item-header">
+                            <span class="menu-item-name">Homemade Mix Berry Juice</span>
+                            <span class="menu-item-price">£2.00</span>
+                        </div>
+                        <p class="menu-item-polish">Kompot</p>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-header">
+                            <span class="menu-item-name">Jug Compote</span>
+                            <span class="menu-item-price">£10.00</span>
+                        </div>
+                        <p class="menu-item-polish">Kompot - dzbanek</p>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-header">
+                            <span class="menu-item-name">Black Tea</span>
+                            <span class="menu-item-price">£2.00</span>
+                        </div>
+                        <p class="menu-item-polish">Herbata czarna</p>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-header">
+                            <span class="menu-item-name">Mint Tea</span>
+                            <span class="menu-item-price">£2.00</span>
+                        </div>
+                        <p class="menu-item-polish">Herbata miętowa</p>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-header">
+                            <span class="menu-item-name">Fruit Tea</span>
+                            <span class="menu-item-price">£2.00</span>
+                        </div>
+                        <p class="menu-item-polish">Herbata owocowa</p>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-header">
+                            <span class="menu-item-name">Green Tea</span>
+                            <span class="menu-item-price">£2.00</span>
+                        </div>
+                        <p class="menu-item-polish">Herbata zielona</p>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-header">
+                            <span class="menu-item-name">Americano</span>
+                            <span class="menu-item-price">£3.00</span>
+                        </div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-header">
+                            <span class="menu-item-name">Latte</span>
+                            <span class="menu-item-price">£3.00</span>
+                        </div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-header">
+                            <span class="menu-item-name">Cappuccino</span>
+                            <span class="menu-item-price">£3.00</span>
+                        </div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-header">
+                            <span class="menu-item-name">Espresso</span>
+                            <span class="menu-item-price">£2.00</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="text-center" style="margin-top: 40px;">
+                <p style="font-style: italic; color: #888; margin-bottom: 20px;">
+                    <i class="fas fa-info-circle"></i> 
+                    All main dishes are served with potatoes or fries and garnish. Beetroot salad contains mustard.
+                </p>
+                <button class="btn-primary" onclick="hideFullMenu()" style="background: transparent; color: var(--accent);">Back to Signature Dishes</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="about" id="about">
+        <div class="container">
+            <div class="about-grid">
+                <div class="about-image-wrapper">
+                    <img src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=800&h=600&fit=crop" alt="U Jarka Restaurant Interior" class="about-image">
+                </div>
+                <div class="about-content">
+                    <h2>Our Story</h2>
+                    <p>U Jarka is a beloved Polish restaurant nestled in the heart of Glasgow, bringing the authentic flavors of Poland to Scotland. Our name honors the tradition and warmth of Polish hospitality.</p>
+                    <p>Every dish is prepared with recipes passed down through generations, using the finest ingredients to create an unforgettable dining experience. From our handmade pierogi to our rich beef stews, each plate tells a story of Polish culinary heritage.</p>
+                    <div class="about-features">
+                        <div class="feature-item">
+                            <i class="fas fa-utensils"></i>
+                            <span>Authentic Polish Recipes</span>
+                        </div>
+                        <div class="feature-item">
+                            <i class="fas fa-leaf"></i>
+                            <span>Vegetarian Options</span>
+                        </div>
+                        <div class="feature-item">
+                            <i class="fas fa-star"></i>
+                            <span>Rated 4.6/5 Stars</span>
+                        </div>
+                        <div class="feature-item">
+                            <i class="fas fa-pound-sign"></i>
+                            <span>£10-20 Per Person</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery Section -->
+    <section class="gallery" id="gallery">
+        <div class="container">
+            <div class="section-header">
+                <h2>From Our Kitchen</h2>
+                <p>A glimpse of the delicious dishes waiting for you</p>
+            </div>
+            <div class="gallery-grid">
+                <div class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1626804475297-411d863b5285?w=500&h=400&fit=crop" alt="Breaded Pork Chop">
+                    <div class="gallery-overlay">
+                        <h4>Panierowany Kotlet Schabowy</h4>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1600891964092-4316c288032e?w=500&h=400&fit=crop" alt="Pierogi">
+                    <div class="gallery-overlay">
+                        <h4>Traditional Pierogi</h4>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1547592166-23ac45744acd?w=500&h=400&fit=crop" alt="Soup">
+                    <div class="gallery-overlay">
+                        <h4>Polish Beetroot Soup</h4>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1534939561126-855b8675edd7?w=500&h=400&fit=crop" alt="Beef Stew">
+                    <div class="gallery-overlay">
+                        <h4>Gulasz Wołowy</h4>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1565958011703-44f9829ba187?w=500&h=400&fit=crop" alt="Chocolate Cake">
+                    <div class="gallery-overlay">
+                        <h4>Chocolate Cake</h4>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1567620905732-2d1ec7ab7445?w=500&h=400&fit=crop" alt="Apple Pie">
+                    <div class="gallery-overlay">
+                        <h4>Apple Pie</h4>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Reviews Section -->
+    <section class="reviews" id="reviews">
+        <div class="container">
+            <div class="section-header">
+                <h2>What Our Guests Say</h2>
+                <p>Real reviews from our valued customers</p>
+            </div>
+            <div class="reviews-grid">
+                <div class="review-card">
+                    <div class="review-header">
+                        <div class="review-avatar">T</div>
+                        <div class="review-meta">
+                            <h4>Tegan George</h4>
+                            <div class="review-stars">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="review-text">"Unbelievably amazing food!!! Feels like a hidden gem because it's not obviously a restaurant from outside, you have to walk down the stairs from the social club. The pierogi are to die for, as is the Ukrainian borsch! Cannot wait to go here again."</p>
+                </div>
+                <div class="review-card">
+                    <div class="review-header">
+                        <div class="review-avatar">L</div>
+                        <div class="review-meta">
+                            <h4>LEGENDARY StatTrak</h4>
+                            <div class="review-stars">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="far fa-star"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="review-text">"Overall the food is tasty, portions are not big, waiting time for soup is +- 10 minutes. It is advisable to take bread and butter with you before the soup. +- 2 pieces, because they do not serve it. You can buy it in the supermarket nearby."</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact" id="contact">
+        <div class="container">
+            <div class="contact-grid">
+                <div class="contact-info">
+                    <h2>Visit Us</h2>
+                    <div class="contact-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <div>
+                            <h4>Address</h4>
+                            <p>5 Parkgrove Terrace, Glasgow G3 7SD, United Kingdom</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-phone"></i>
+                        <div>
+                            <h4>Phone</h4>
+                            <a href="tel:+447756970306">+44 7756 970306</a>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-clock"></i>
+                        <div>
+                            <h4>Opening Hours</h4>
+                            <p>Opens at 6:00 PM</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-utensils"></i>
+                        <div>
+                            <h4>Dining</h4>
+                            <p>Dine-in Available</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-pound-sign"></i>
+                        <div>
+                            <h4>Price Range</h4>
+                            <p>£10-20 per person</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-map"></i>
+                        <div>
+                            <h4>Find Us on Google Maps</h4>
+                            <a href="https://maps.app.goo.gl/zxgy5z1jGSgEW311A" target="_blank">Get Directions</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="map-container">
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d143447.8317175707!2d-4.372539903359426!3d55.86098207308985!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4888461f6e1f0c5b%3A0x2e5c5c5c5c5c5c5c!2s5%20Parkgrove%20Terrace%2C%20Glasgow%20G3%207SD!5e0!3m2!1sen!2suk!4v1700000000000!5m2!1sen!2suk" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p> U Jarka Polish Restaurant. All rights reserved. | 5 Parkgrove Terrace, Glasgow G3 7SD</p>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scrolling for navigation
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Navbar background on scroll
+        window.addEventListener('scroll', () => {
+            const navbar = document.getElementById('navbar');
+            if (window.scrollY > 50) {
+                navbar.style.background = 'rgba(26, 26, 26, 0.98)';
+                navbar.style.boxShadow = '0 2px 20px rgba(0,0,0,0.1)';
+            } else {
+                navbar.style.background = 'rgba(26, 26, 26, 0.95)';
+                navbar.style.boxShadow = 'none';
+            }
+        });
+
+        // Show/Hide Full Menu
+        function showFullMenu() {
+            const menuSection = document.getElementById('menu');
+            menuSection.classList.add('active');
+            menuSection.scrollIntoView({ behavior: 'smooth' });
+        }
+
+        function hideFullMenu() {
+            const menuSection = document.getElementById('menu');
+            menuSection.classList.remove('active');
+            document.getElementById('signature').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        // Menu Category Navigation
+        function showCategory(categoryId) {
+            // Hide all categories
+            document.querySelectorAll('.menu-category').forEach(cat => {
+                cat.classList.remove('active');
+            });
+
+            // Remove active from all buttons
+            document.querySelectorAll('.menu-nav-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+
+            // Show selected category
+            document.getElementById(categoryId).classList.add('active');
+
+            // Add active to clicked button
+            event.target.classList.add('active');
+        }
+
+        // Intersection Observer for animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Observe all cards
+        document.querySelectorAll('.dish-card, .menu-item, .review-card, .gallery-item').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(30px)';
+            el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html>
